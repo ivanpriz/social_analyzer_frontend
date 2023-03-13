@@ -1,0 +1,27 @@
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: top;
+    width: 18vw;
+    height: 98%;
+    border-right: 12px solid #0088BE;
+}
+
+.menu-image {
+    width: 20px;
+    height: 20px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    align-self: top;
+    margin-right: auto;
+    margin-left: calc((18vw - 160px)/2);
+}
+
+.hidden {
+    width: max-content;
+    height: max-content;
+    /* margin-left: 200px; */;
+    align-self: top;
+    height: 98%;
+}

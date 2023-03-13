@@ -1,0 +1,29 @@
+/* Revert CSS style of target element and its children */                       
+.reset-style, .reset-style * {
+    all: revert;
+}
+
+body {
+    background-color: #A8A8A8;
+}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 20%;
+    height: 100%;
+    border-right: 12px solid #0088BE;
+}
+
+.app {
+    width: 98vw;
+    height: 96vh;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    background: #A8A8A8;
+}

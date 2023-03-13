@@ -1,0 +1,20 @@
+.entity-card-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 98%;
+    height: 96%;
+
+    /*
+    background: #D2D2D3;
+    border: 6px solid #0088BE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 33px;
+    */
+    
+    overflow: scroll;
+
+    margin-left: 1px;
+    margin-right: 1px;
+}

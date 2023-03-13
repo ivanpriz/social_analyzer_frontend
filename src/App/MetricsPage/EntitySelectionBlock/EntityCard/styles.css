@@ -1,0 +1,63 @@
+.card {
+    height: 90px;
+    width: 90%;
+
+    background: rgba(210, 210, 211, 0.3);
+    border: 6px solid #005B95;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 33px;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 2%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+
+.card_hover {
+    cursor: pointer;
+}
+
+.card_selected {
+    background: #FFCECE;
+}
+
+.card-avatar {
+    border-radius: 25%;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+
+    height: 100%;
+}
+
+.show-more {
+    width: 37.36px;
+    height: 16.01px;
+    margin-left: 20%;
+}
+
+.entity-name {
+    font-family: 'Roboto';
+    font-style: bold;
+    font-weight: 700;
+    font-size: 18px;
+
+    /* identical to box height */
+
+    color: #000000;
+}
+
+.entity-description {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: #000000;
+}
