@@ -1,0 +1,9 @@
+.entity-charts {
+    background: #D2D2D3;
+    border: 6px solid #0088BE;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 33px;
+
+    width: 54%;
+    height: 96%;
+}
