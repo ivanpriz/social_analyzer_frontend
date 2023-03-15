@@ -4,7 +4,8 @@ import { Navbar } from "./components/Navbar";
 import { MetricsPage } from "./MetricsPage/MetricsPage";
 import { MainPage } from "./MainPage/MainPage";
 import { AboutPage } from "./AboutPage";
-import { RegistrationPage } from "./RegistrationPage";
+import { RegisterPage } from "./RegisterPage";
+import { LoginPage } from "./LoginPage";
 
 
 // TODO make icon on top of navbar
@@ -15,7 +16,8 @@ function App() {
           <Route path="/" element={ <MainPage /> }/>
           <Route path="/metrics" element={ <MetricsPage /> } />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/register" element={<RegistrationPage />} />
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/login" element={<LoginPage />} />
         </Routes>
     </BrowserRouter>
   );

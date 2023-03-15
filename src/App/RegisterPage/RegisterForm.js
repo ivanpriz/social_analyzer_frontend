@@ -2,13 +2,14 @@ import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios';
-import "./RegistrationForm.css";
+import { Link } from "react-router-dom";
+import "./RegisterForm.css";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/register';
 
-export const RegistrationForm = () => {
+export const RegisterForm = () => {
     const userRef = useRef();
     const errRef = useRef();
 
@@ -88,7 +89,7 @@ export const RegistrationForm = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <a className="sign-in-link" href="#">Sign In</a>
+                        <Link className="sign-in-link" to="/login">Sign In</Link>
                     </p>
                 </section>
             ) : (
@@ -172,8 +173,7 @@ export const RegistrationForm = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            {/*put router link here*/}
-                            <a className="sign-in-link" href="#">Sign In</a>
+                            <Link to="login" className="sign-in-link">Sign In</Link>
                         </span>
                     </p>
                 </section>
