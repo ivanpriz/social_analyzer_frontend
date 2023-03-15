@@ -5,6 +5,7 @@ import { Page } from "../components/Page";
 import { Entity } from "./utils";
 import { EntitySelectionBlock } from "./EntitySelectionBlock";
 import { StatsBlock } from "./StatsBlock";
+import { PageWithNavbar } from "../components/PageWithNavbar";
 
 import "./MetricsPage.css";
 
@@ -68,13 +69,15 @@ export const MetricsPage: React.FC = () => {
     let [selectedCoin, setSelectedCoin] = useState<Entity>(coins[0])  // TODO support null for not selected
 
     return (
-    <Page>
-        <EntitySelectionBlock
-            entities={coins}
-            selectedEntity={selectedCoin}
-            setSelectedEntity={setSelectedCoin}
-        />
-        <StatsBlock entity={selectedCoin} />
-    </Page>
+      <PageWithNavbar>
+        <Page>
+          <EntitySelectionBlock
+              entities={coins}
+              selectedEntity={selectedCoin}
+              setSelectedEntity={setSelectedCoin}
+          />
+          <StatsBlock entity={selectedCoin} />
+        </Page>
+      </PageWithNavbar>
     )
 }

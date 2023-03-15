@@ -8,8 +8,14 @@ import { MainMenuItem } from "./MainMenuItem";
 
 import "./Navbar.css";
 
+type NavbarProps = React.PropsWithChildren & {
+  menuItems: {
+    text: string;
+    route: string;
+  }[]
+}
 
-export const Navbar: React.FC<React.PropsWithChildren> = () => {
+export const Navbar: React.FC<NavbarProps> = ({ menuItems, children }) => {
   let [showMenu, setShowMenu] = useState<Boolean>(true)
 
   return (
@@ -22,9 +28,7 @@ export const Navbar: React.FC<React.PropsWithChildren> = () => {
       {showMenu && <div>
         <UserCard avatarUrl="" userFirstName="Ivan" userLastName="Priz" />
         <MainMenu>
-          <MainMenuItem text="Main Page" link="/" />
-          <MainMenuItem text="Metrics" link="/metrics" />
-          <MainMenuItem text="About us" link="/about" />
+          {menuItems.map(item => <MainMenuItem text={item.text} link={item.route} />)}
         </MainMenu>
       </div>}
     </div>
