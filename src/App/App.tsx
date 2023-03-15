@@ -5,7 +5,6 @@ import { MetricsPage } from "./MetricsPage/MetricsPage";
 import { MainPage } from "./MainPage/MainPage";
 import { AboutPage } from "./AboutPage";
 import { RegistrationPage } from "./RegistrationPage";
-import "./App.css";
 
 
 // TODO make icon on top of navbar
