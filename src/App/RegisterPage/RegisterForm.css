@@ -17,7 +17,7 @@ section {
     padding-bottom: 1rem;
 }
 
-.sign-in-link, .sign-in-link:visited {
+.signInLink, .signInLink:visited {
     color: #fff;
 }
 

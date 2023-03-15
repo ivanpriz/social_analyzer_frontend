@@ -1,5 +1,6 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
+import "./LoginForm.css";
 // import AuthContext from "./context/AuthProvider";
 
 // import axios from './api/axios';
@@ -63,7 +64,7 @@ export const LoginForm = () => {
                     <h1>You are logged in!</h1>
                     <br />
                     <p>
-                        <Link to="/">Go to Home</Link>
+                        <Link to="/" className="registerLink">Go to Home</Link>
                     </p>
                 </section>
             ) : (
@@ -95,7 +96,6 @@ export const LoginForm = () => {
                     <p>
                         Need an Account?<br />
                         <span className="line">
-                            {/*put router link here*/}
                             <Link to="/register"className='registerLink'>Sign Up</Link>
                         </span>
                     </p>

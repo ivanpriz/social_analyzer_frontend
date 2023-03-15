@@ -89,7 +89,7 @@ export const RegisterForm = () => {
                 <section>
                     <h1>Success!</h1>
                     <p>
-                        <Link className="sign-in-link" to="/login">Sign In</Link>
+                        <Link className="signInLink" to="/login">Sign In</Link>
                     </p>
                 </section>
             ) : (
@@ -173,7 +173,7 @@ export const RegisterForm = () => {
                     <p>
                         Already registered?<br />
                         <span className="line">
-                            <Link to="login" className="sign-in-link">Sign In</Link>
+                            <Link to="login" className="signInLink">Sign In</Link>
                         </span>
                     </p>
                 </section>
