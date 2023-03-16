@@ -1,13 +1,13 @@
 import { useRef, useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import "./LoginForm.css";
-// import AuthContext from "./context/AuthProvider";
+import { AuthContext } from "../context/AuthProvider";
+import axios from '../api/axios';
 
-// import axios from './api/axios';
-// const LOGIN_URL = '/auth';
+const LOGIN_URL = '/api/v1/auth';
 
 export const LoginForm = () => {
-    // const { setAuth } = useContext(AuthContext);
+    const { setAuth } = useContext(AuthContext);
     const userRef = useRef();
     const errRef = useRef();
 
@@ -28,31 +28,34 @@ export const LoginForm = () => {
         e.preventDefault();
 
         try {
-            // const response = await axios.post(LOGIN_URL,
-            //     JSON.stringify({ user, pwd }),
-            //     {
-            //         headers: { 'Content-Type': 'application/json' },
-            //         withCredentials: true
-            //     }
-            // );
-            // console.log(JSON.stringify(response?.data));
-            // //console.log(JSON.stringify(response));
-            // const accessToken = response?.data?.accessToken;
-            // const roles = response?.data?.roles;
-            // setAuth({ user, pwd, roles, accessToken });
+            const formData = new FormData();
+            formData.append("username", user);
+            formData.append("password", pwd);
+            const response = await axios.post(LOGIN_URL,
+                formData,
+                {
+                    headers: { 'Content-Type': 'application/www-form-urlencoded' },
+                    withCredentials: true
+                }
+            );
+            console.log(JSON.stringify(response?.data));
+            //console.log(JSON.stringify(response));
+            const accessToken = response?.data?.accessToken;
+            const roles = response?.data?.roles;
+            setAuth({ user, pwd, roles, accessToken });
             setUser('');
             setPwd('');
             setSuccess(true);
         } catch (err) {
-            // if (!err?.response) {
-            //     setErrMsg('No Server Response');
-            // } else if (err.response?.status === 400) {
-            //     setErrMsg('Missing Username or Password');
-            // } else if (err.response?.status === 401) {
-            //     setErrMsg('Unauthorized');
-            // } else {
-            //     setErrMsg('Login Failed');
-            // }
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 400) {
+                setErrMsg('Missing Username or Password');
+            } else if (err.response?.status === 401) {
+                setErrMsg('Unauthorized');
+            } else {
+                setErrMsg('Login Failed');
+            }
             errRef.current.focus();
         }
     }
@@ -72,7 +75,7 @@ export const LoginForm = () => {
                     <p ref={errRef} className={errMsg ? "errmsg" : "offscreen"} aria-live="assertive">{errMsg}</p>
                     <h1>Sign In</h1>
                     <form onSubmit={handleSubmit} className="loginForm">
-                        <label htmlFor="username">Username:</label>
+                        <label htmlFor="username">Email:</label>
                         <input
                             type="text"
                             id="username"

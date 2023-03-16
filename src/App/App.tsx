@@ -8,7 +8,6 @@ import { RegisterPage } from "./RegisterPage";
 import { LoginPage } from "./LoginPage";
 
 
-// TODO make icon on top of navbar
 function App() {
   return (
     <BrowserRouter>
@@ -20,7 +19,7 @@ function App() {
           <Route path="/login" element={<LoginPage />} />
         </Routes>
     </BrowserRouter>
-  );
+  )
 }
 
 export default App;

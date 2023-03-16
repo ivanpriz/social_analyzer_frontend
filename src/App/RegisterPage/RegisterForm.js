@@ -1,13 +1,14 @@
 import { useRef, useState, useEffect } from "react";
 import { faCheck, faTimes, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from 'axios';
+import axios from "../api/axios";
 import { Link } from "react-router-dom";
 import "./RegisterForm.css";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
+const EMAIL_REGEX = /.*@.*/
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/register';
+const REGISTER_URL = '/api/v1/users';
 
 export const RegisterForm = () => {
     const userRef = useRef();
@@ -16,6 +17,10 @@ export const RegisterForm = () => {
     const [user, setUser] = useState('');
     const [validName, setValidName] = useState(false);
     const [userFocus, setUserFocus] = useState(false);
+
+    const [email, setEmail] = useState('');
+    const [validEmail, setValidEmail] = useState(false);
+    const [emailFocus, setEmailFocus] = useState(false);
 
     const [pwd, setPwd] = useState('');
     const [validPwd, setValidPwd] = useState(false);
@@ -37,6 +42,10 @@ export const RegisterForm = () => {
     }, [user])
 
     useEffect(() => {
+        setValidEmail(EMAIL_REGEX.test(email))
+    }, [email])
+
+    useEffect(() => {
         setValidPwd(PWD_REGEX.test(pwd));
         setValidMatch(pwd === matchPwd);
     }, [pwd, matchPwd])
@@ -55,16 +64,16 @@ export const RegisterForm = () => {
             return;
         }
         try {
-        //     const response = await axios.post(REGISTER_URL,
-        //         JSON.stringify({ user, pwd }),
-        //         {
-        //             headers: { 'Content-Type': 'application/json' },
-        //             withCredentials: true
-        //         }
-        //     );
-        //     console.log(response?.data);
-        //     console.log(response?.accessToken);
-        //     console.log(JSON.stringify(response))
+            const response = await axios.post(REGISTER_URL,
+                JSON.stringify({ name: user, email: email, password: pwd, repeat_password: matchPwd }),
+                {
+                    headers: { 'Content-Type': 'application/json' },
+                    withCredentials: true
+                }
+            );
+            console.log(response?.data);
+            console.log(response?.accessToken);
+            console.log(JSON.stringify(response));
             setSuccess(true);
             //clear state and controlled inputs
             //need value attrib on inputs for this
@@ -72,13 +81,13 @@ export const RegisterForm = () => {
             setPwd('');
             setMatchPwd('');
         } catch (err) {
-        //     if (!err?.response) {
-        //         setErrMsg('No Server Response');
-        //     } else if (err.response?.status === 409) {
-        //         setErrMsg('Username Taken');
-        //     } else {
-        //         setErrMsg('Registration Failed')
-        //     }
+            if (!err?.response) {
+                setErrMsg('No Server Response');
+            } else if (err.response?.status === 409) {
+                setErrMsg('Username Taken');
+            } else {
+                setErrMsg('Registration Failed')
+            }
             errRef.current.focus();
         }
     }
@@ -122,6 +131,27 @@ export const RegisterForm = () => {
                             Letters, numbers, underscores, hyphens allowed.
                         </p>
 
+                        <label htmlFor="email">
+                            Email:
+                            <FontAwesomeIcon icon={faCheck} className={validEmail ? "valid" : "hide"} />
+                            <FontAwesomeIcon icon={faTimes} className={validEmail || !email ? "hide" : "invalid"} />
+                        </label>
+                        <input
+                            type="text"
+                            id="email"
+                            autoComplete="off"
+                            onChange={(e) => setEmail(e.target.value)}
+                            value={email}
+                            required
+                            aria-invalid={validEmail ? "false" : "true"}
+                            aria-describedby="uidnote"
+                            onFocus={() => setEmailFocus(true)}
+                            onBlur={() => setEmailFocus(false)}
+                        />
+                        <p id="uidnote" className={emailFocus && email && !validEmail ? "instructions" : "offscreen"}>
+                            <FontAwesomeIcon icon={faInfoCircle} />
+                            Should have @.
+                        </p>
 
                         <label htmlFor="password">
                             Password:
